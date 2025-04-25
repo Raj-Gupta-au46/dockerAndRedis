@@ -4,13 +4,26 @@ import { createServer } from "http";
 import path from "path";
 import { Server } from "socket.io";
 import { Database } from "./db";
-
+import RedisService from "./services/redis.server";
 
 class App {
   public app: Application;
   constructor() {
     new Database();
     this.app = express();
+    this.initializeRedis();
+  }
+
+  private async initializeRedis() {
+    try {
+      await RedisService.connect();
+      process.on("SIGINT", async () => {
+        await RedisService.disconnect();
+        process.exit(0);
+      });
+    } catch (error) {
+      console.error("Failed to initialize Redis:", error);
+    }
   }
   public listen(appInt: {
     topMiddleware: any[];
@@ -57,7 +70,7 @@ class App {
   }
   private routes() {
     const subRoutes = fs.readdirSync(path.join(__dirname, "/routes"));
-    console.log('subRoutes', subRoutes);
+    console.log("subRoutes", subRoutes);
     subRoutes.forEach((file: any): void => {
       if (file.includes(".routes.")) {
         import(path.join(__dirname + "/routes/" + file)).then((route) => {
