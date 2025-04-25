@@ -41,12 +41,6 @@ class App {
 
     const server = createServer(options, this.app);
 
-    const io = new Server(server, {
-      cors: {
-        origin: "*",
-      },
-    });
-
     server.listen(appInt.port, (): void => {
       this.printRequests();
       const middleware = fs.readdirSync(path.join(__dirname, "/middleware"));

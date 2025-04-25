@@ -18,7 +18,7 @@ export default class TaskRoutes {
   private routes() {
     // POST /tasks → Create a new task
     this.router.post(
-      "/",
+      "/create",
       new ProtectedMiddleware().protected,
       this.cacheMiddleware.clearCache, // Clear cache on creation
       TaskControllerValidator.createTask,

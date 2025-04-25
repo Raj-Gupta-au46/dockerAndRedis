@@ -3,7 +3,7 @@ import { port } from "./config";
 // import cookiesParse from "cookie-parser";
 
 const app = new App();
-
+console.log("redis: ", process.env.REDIS_URL);
 app.listen({
   topMiddleware: [
     // cookiesParse(),

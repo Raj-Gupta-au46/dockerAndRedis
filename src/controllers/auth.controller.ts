@@ -11,46 +11,31 @@ import {
 import { fieldValidateError } from "../helper";
 
 import { UserSchema } from "../models";
-import { EmailService, JwtService, PasswordHasServices } from "../services";
+import { JwtService, PasswordHasServices } from "../services";
 import { MIDDLEWARE_REQUEST_TYPE } from "../types";
 
 class AuthController {
   async register(req: Request, res: Response, next: NextFunction) {
     try {
-      const {
-        name,
-        email,
-
-        password,
-
-        // country: { code, label, phone },
-      } = req?.body;
+      const { name, email, password } = req?.body;
 
       fieldValidateError(req);
 
-      // if (password !== confirmPassword)
-      //   throw new Conflict("password and confirmPassword should be same");
-      const role1 = "USER";
-
       const checkDuplicateUser = await UserSchema.findOne({
         email,
-        role: role1,
       });
 
       if (checkDuplicateUser) throw new Conflict("This email is already exit");
 
       const hashPassword = await new PasswordHasServices().hash(password);
 
-      const emailVerificationToken = crypto.randomBytes(20).toString("hex");
-
       // Get the current timestamp using Date.now()
       // const timestamp = Date.now();
 
       const userData = {
-        role: role1,
+        role: "SUPER-ADMIN",
         name,
         email,
-
         password: hashPassword,
       };
 
@@ -59,11 +44,13 @@ class AuthController {
       if (!registerUser)
         throw new InternalServerError("Something wrong, user not created.");
 
+      const userResponse = registerUser.toObject();
+
       res.json({
         status: "SUCCESS",
         success: {
-          message: `You are register successfully as ${role1}. Check your EMAIL to verify your account.`,
-          data: { ...registerUser, password: undefined },
+          message: `You are register successfully `,
+          data: userResponse,
         },
       });
     } catch (error) {

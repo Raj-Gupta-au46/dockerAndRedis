@@ -13,9 +13,3 @@ export const region = String(process.env.REGION);
 export const cloudFontDistribution = String(
   process.env.CLOUD_FRONT_DISTRIBUTION_ID
 );
-export const certificatePath = String(process.env.CERTIFICATE_PATH);
-export const cloudFont = String(process.env.CLOUD_FRONT_URL);
-export const keyPath = String(process.env.KEY_PATH);
-
-export const GOOGLE_CLIENT_ID = String(process.env.GOOGLE_CLIENT_ID);
-export const GOOGLE_CLIENT_SECRET = String(process.env.GOOGLE_CLIENT_SECRET);
