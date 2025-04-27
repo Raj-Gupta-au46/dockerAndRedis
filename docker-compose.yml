@@ -26,7 +26,7 @@ services:
     depends_on:
       - mongo # Ensure mongo is up before the app starts
     environment:
-      - MONGO_URI=mongodb://mongo:27017/ # Add this to pass the connection string
+      - DATABASE_URL=mongodb://mongo:27017/Task # Add this to pass the connection string
     env_file:
       - .env
     volumes:
