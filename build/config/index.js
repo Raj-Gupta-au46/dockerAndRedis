@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cloudFontDistribution = exports.region = exports.bucketName = exports.secretKey = exports.accessKey = exports.accessSecret = exports.host = exports.password = exports.email = exports.connectionDB = exports.port = void 0;
+require("dotenv/config");
+exports.port = Number(process.env.PORT);
+exports.connectionDB = String(process.env.DATABASE_URL);
+exports.email = String(process.env.EMAIL);
+exports.password = String(process.env.PASSWORD);
+exports.host = String(process.env.HOST);
+exports.accessSecret = String(process.env.ACCESS_SECRET);
+exports.accessKey = String(process.env.ACCESS_KEY);
+exports.secretKey = String(process.env.SECRET_KEY);
+exports.bucketName = String(process.env.BUCKET_NAME);
+exports.region = String(process.env.REGION);
+exports.cloudFontDistribution = String(process.env.CLOUD_FRONT_DISTRIBUTION_ID);
