@@ -14,19 +14,19 @@ services:
       timeout: 3s
       retries: 3
 
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
+  # mongo:
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"
 
   app:
     build: .
     ports:
       - "5000:5000"
-    depends_on:
-      - mongo # Ensure mongo is up before the app starts
+    # depends_on:
+    #   - mongo # Ensure mongo is up before the app starts
     environment:
-      - DATABASE_URL=mongodb://mongo:27017/Task # Add this to pass the connection string
+      - DATABASE_URL=mongodb://host.docker.internal:27017/Task # Add this to pass the connection string
     env_file:
       - .env
     volumes:
