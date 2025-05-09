@@ -167,7 +167,7 @@ describe("AuthController", () => {
       userSchemaMock.verify();
     });
   });
-
+  // check for login and testing other methods here
   describe("login", () => {
     it("should successfully login a user", async () => {
       // Setup test data
