@@ -255,6 +255,8 @@ describe("AuthController", () => {
       userSchemaMock.verify();
     });
 
+    // adding commit
+
     it("should return not found error when password is incorrect", async () => {
       // Setup test data
       req.body = {
