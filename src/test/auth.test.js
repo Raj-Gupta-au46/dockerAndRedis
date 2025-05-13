@@ -245,6 +245,7 @@ describe("AuthController", () => {
         .returns({ select: selectMock });
 
       // Call the method
+      // testing
       await authController.login(req, res, next);
 
       // Assertions
