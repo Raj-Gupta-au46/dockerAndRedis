@@ -384,6 +384,8 @@ describe("AuthController", () => {
       // Call the method
       await authController.self(req, res, next);
 
+      // refactor
+
       // Assertions
       expect(next.calledOnce).to.be.true;
       expect(next.firstCall.args[0].message).to.equal("Database error");
