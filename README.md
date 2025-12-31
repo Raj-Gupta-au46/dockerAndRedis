@@ -166,3 +166,6 @@ npm run dev - Run in development mode (nodemon)
 npm run build - Build for production
 
 npm run start - Start the app
+
+npm run test - For testing
+
